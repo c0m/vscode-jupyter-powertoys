@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as vscode from 'vscode';
 import { activateNotebookRunGroups } from './notebookRunGroups/startup';
+import { activateCellColors } from './cellColors/startup';
 import { activate as activateKernelManagement } from './kernelManager/extension';
 import { activate as activateContextualHelp } from './contextualHelp/extension';
 import { activate as activateKernelSpy } from './kernelSpy/extension';
@@ -18,6 +19,10 @@ export async function activate(context: vscode.ExtensionContext) {
     await activateKernelSpy(context);
     if (vscode.workspace.getConfiguration('jupyter').get('contextualHelp.enabled')) {
         await activateContextualHelp(context);
+    }
+    // Cell Colors
+    if (vscode.workspace.getConfiguration('jupyter').get('cellColors.enabled')) {
+        activateCellColors(context);
     }
 }
 

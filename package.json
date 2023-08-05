@@ -216,6 +216,18 @@
                 "title": "Copy",
                 "category": "Notebook",
                 "icon": "$(copy)"
+            },
+            {
+                "command": "vscode-notebook-cell-colors.addColor",
+                "title": "Add Color",
+                "category": "Notebook Cell Colors",
+                "icon": "images/cellColors/icons/addColorIcon.svg"
+            },
+            {
+                "command": "vscode-notebook-cell-colors.removeColor",
+                "title": "Remove Color",
+                "category": "Notebook Cell Colors",
+                "icon": "images/cellColors/icons/removeColorIcon.svg"
             }
         ],
         "menus": {
@@ -275,6 +287,16 @@
                     "title": "%jupyter.command.jupyter.openContextualHelp.title%",
                     "category": "Notebook",
                     "enablement": "isWorkspaceTrusted && jupyter.ispythonnotebook && config.jupyter.contextualHelp.enabled"
+                },
+                {
+                    "command": "vscode-notebook-cell-colors.addColor",
+                    "group": "Notebook Cell Colors",
+                    "when": "config.jupyter.cellColors.enabled"
+                },
+                {
+                    "command": "vscode-notebook-cell-colors.removeColor",
+                    "group": "Notebook Cell Colors",
+                    "when": "config.jupyter.cellColors.enabled"
                 }
             ],
             "notebook/toolbar": [
@@ -339,6 +361,16 @@
                     "command": "vscode-notebook-groups.executeGroup3",
                     "group": "inline/cell@18",
                     "when": "config.jupyter.notebookRunGroups.groupCount > 2 && notebookCellResource in notebookRunGroups.groupThreeCells && config.jupyter.notebookRunGroups.runIconsOnCell && config.jupyter.notebookRunGroups.enabled"
+                },
+                {
+                    "command": "vscode-notebook-cell-colors.addColor",
+                    "group": "inline/cell@19",
+                    "when": "config.jupyter.cellColors.enabled"
+                },
+                {
+                    "command": "vscode-notebook-cell-colors.removeColor",
+                    "group": "inline/cell@20",
+                    "when": "config.jupyter.cellColors.enabled"
                 }
             ],
             "notebook/cell/execute": [
@@ -503,6 +535,12 @@
                         ],
                         "description": "Level of help to provide",
                         "scope": "application"
+                    },
+                    "jupyter.cellColors.enabled": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Color your cells according to your preferences",
+                        "scope": "machine"
                     }
                 }
             }
@@ -539,7 +577,7 @@
         "@types/loadable__component": "^5.13.4",
         "@types/lodash": "^4.14.178",
         "@types/mocha": "^9.0.0",
-        "@types/node": "16.11.07",
+        "@types/node": "^16.11.7",
         "@types/react-dom": "^17.0.11",
         "@types/redux-logger": "^3.0.9",
         "@types/webpack-env": "^1.18.0",
@@ -597,7 +635,7 @@
         "untildify": "^4.0.0"
     },
     "overrides": {
-        "trim@<1.0.0":"1.0.1",
+        "trim@<1.0.0": "1.0.1",
         "json5": "2.2.2",
         "moment@<2.29.4": "2.29.4",
         "terser@<5.14.2": "5.14.2",
